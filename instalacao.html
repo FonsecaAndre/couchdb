@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processo de Instalação do CouchDB</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <header class="bg-danger text-white text-center py-4">
+        <div class="container">
+            <h1>Processo de Instalação do CouchDB</h1>
+            <div class="d-flex justify-content-center mt-4">
+                <a href="https://www.youtube.com/" target="_blank" class="btn btn-light mx-2">Vídeo-apresentação</a>
+                <a href="sobre.html" class="btn btn-light mx-2">Sobre</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4">
+        <section id="instalacao-tradicional" class="mb-4">
+            <h2>Instalação Tradicional</h2>
+            <h3>Linux (Ubuntu)</h3>
+            <ol>
+                <li>Atualize o sistema:
+                    <pre><code>sudo apt update</code></pre>
+                </li>
+                <li>Instale as dependências:
+                    <pre><code>sudo apt install -y libmozjs185-1.0 libicu-dev libcurl4-openssl-dev</code></pre>
+                </li>
+                <li>Adicione o repositório CouchDB:
+                    <pre><code>echo "deb https://apache.bintray.com/couchdb-deb focal main" | sudo tee -a /etc/apt/sources.list</code></pre>
+                </li>
+                <li>Atualize e instale o CouchDB:
+                    <pre><code>sudo apt update
+sudo apt install -y couchdb</code></pre>
+                </li>
+                <li>Siga as instruções para configurar o CouchDB (Standalone, Cluster, etc.).</li>
+            </ol>
+
+            <h3>Windows</h3>
+            <ol>
+                <li>Baixe o instalador do <a href="https://couchdb.apache.org/">site oficial do CouchDB</a>.</li>
+                <li>Execute o instalador e siga as instruções na tela.</li>
+                <li>Após a instalação, o CouchDB será iniciado automaticamente.</li>
+            </ol>
+        </section>
+
+        <section id="instalacao-container" class="mb-4">
+            <h2>Instalação em Container (Docker)</h2>
+            <ol>
+                <li>Certifique-se de ter o Docker instalado e em execução.</li>
+                <li>Puxe a imagem do CouchDB:
+                    <pre><code>docker pull couchdb</code></pre>
+                </li>
+                <li>Execute o container:
+                    <pre><code>docker run -d -p 5984:5984 --name couchdb -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password couchdb</code></pre>
+                </li>
+            </ol>
+        </section>
+
+        <section id="voltar" class="text-center">
+            <a href="index.html" class="btn btn-danger">Voltar</a>
+        </section>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

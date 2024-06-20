@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criação do Banco de Dados</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <header class="bg-danger text-white text-center py-4">
+        <div class="container">
+            <h1>Criação do Banco de Dados</h1>
+            <div class="d-flex justify-content-center mt-4">
+                <a href="https://www.youtube.com/" target="_blank" class="btn btn-light mx-2">Vídeo-apresentação</a>
+                <a href="sobre.html" class="btn btn-light mx-2">Sobre</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4">
+        <section id="criacao-banco-web" class="mb-4">
+            <h2>Criando o Banco de Dados via Interface Web</h2>
+            <ol>
+                <li>Abra seu navegador e acesse a interface web do CouchDB. Normalmente está em <a
+                        href="http://127.0.0.1:5984/_utils" target="_blank">http://127.0.0.1:5984/_utils</a>.</li>
+                <li>Clique em "Create Database" e insira um nome único para seu banco de dados, como
+                    <code>meu_banco_inedito</code>.</li>
+                <li>Clique em "Create" para criar o banco de dados.</li>
+            </ol>
+        </section>
+
+        <section id="criacao-banco-curl" class="mb-4">
+            <h2>Criando o Banco de Dados via <code>curl</code></h2>
+            <p>Se preferir usar <code>curl</code>, execute o seguinte comando no terminal:</p>
+            <pre><code>curl -X PUT http://127.0.0.1:5984/meu_banco_inedito</code></pre>
+        </section>
+
+        <section id="crud" class="mb-4">
+            <h2>Interação CRUD com o Banco de Dados</h2>
+
+            <h3>1. Create (Criar um documento)</h3>
+            <p>Para criar um documento no banco de dados, você pode usar o seguinte comando <code>curl</code>:</p>
+            <pre><code>curl -X POST http://127.0.0.1:5984/meu_banco_inedito -H "Content-Type: application/json" -d '{"nome": "João", "idade": 30, "cidade": "São Paulo"}'</code></pre>
+
+            <h3>2. Read (Ler um documento)</h3>
+            <p>Para ler um documento do banco de dados, você precisa saber o ID do documento. Use o seguinte comando
+                <code>curl</code>:</p>
+            <pre><code>curl -X GET http://127.0.0.1:5984/meu_banco_inedito/{document_id}</code></pre>
+
+            <h3>3. Update (Atualizar um documento)</h3>
+            <p>Para atualizar um documento, você precisa saber o ID e a revisão (rev) do documento. Use o seguinte
+                comando <code>curl</code>:</p>
+            <pre><code>curl -X PUT http://127.0.0.1:5984/meu_banco_inedito/{document_id} -H "Content-Type: application/json" -d '{"_rev": "{document_rev}", "nome": "João", "idade": 31, "cidade": "Rio de Janeiro"}'</code></pre>
+
+            <h3>4. Delete (Deletar um documento)</h3>
+            <p>Para deletar um documento, você precisa saber o ID e a revisão (rev) do documento. Use o seguinte comando
+                <code>curl</code>:</p>
+            <pre><code>curl -X DELETE http://127.0.0.1:5984/meu_banco_inedito/{document_id}?rev={document_rev}</code></pre>
+        </section>
+
+        <section id="voltar" class="text-center">
+            <a href="index.html" class="btn btn-danger">Voltar</a>
+        </section>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

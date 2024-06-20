@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interface de Acesso</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+  <header class="bg-danger text-white text-center py-4">
+    <div class="container">
+      <h1>Interface de Acesso</h1>
+      <div class="d-flex justify-content-center mt-4">
+        <a href="https://www.youtube.com/" target="_blank" class="btn btn-light mx-2">Vídeo-apresentação</a>
+        <a href="sobre.html" class="btn btn-light mx-2">Sobre</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container my-4">
+    <section id="interface-web" class="mb-4">
+      <h2>Acesso via Interface Web (Futon)</h2>
+      <p>Acesse <code>http://127.0.0.1:5984/_utils</code> no navegador para usar a interface web do CouchDB.</p>
+    </section>
+
+    <section id="interface-linguagem" class="mb-4">
+      <h2>Acesso via Linguagem de Programação (Node.js com Nano)</h2>
+      <ol>
+        <li>Instale a biblioteca <code>nano</code>:
+          <pre><code>npm install nano</code></pre>
+        </li>
+        <li>Exemplo de código para interação com o banco de dados:
+          <pre><code>const nano = require('nano')('http://admin:password@127.0.0.1:5984');
+const db = nano.db.use('meu_banco_inedito');
+
+// Criar documento
+db.insert({ name: 'John Doe', age: 30 }, 'unique_id').then((body) => {
+  console.log(body);
+}).catch((err) => {
+  console.log(err);
+});
+
+// Ler documento
+db.get('unique_id').then((body) => {
+  console.log(body);
+}).catch((err) => {
+  console.log(err);
+});
+
+// Atualizar documento
+db.get('unique_id').then((body) => {
+  body.age = 31;
+  return db.insert(body);
+}).then((body) => {
+  console.log(body);
+}).catch((err) => {
+  console.log(err);
+});
+
+// Deletar documento
+db.get('unique_id').then((body) => {
+  return db.destroy(body._id, body._rev);
+}).then((body) => {
+  console.log(body);
+}).catch((err) => {
+  console.log(err);
+});</code></pre>
+        </li>
+      </ol>
+    </section>
+
+    <section id="voltar" class="text-center">
+      <a href="index.html" class="btn btn-danger">Voltar</a>
+    </section>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>
