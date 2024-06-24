@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% if carro._id %}
+            Editar Carro
+        {% else %}
+            Adicionar Novo Carro
+        {% endif %}
+    </title>
+</head>
+<body>
+    {% extends 'base.html' %}
+
+    {% block title %}
+    {% if carro._id %}
+        Editar Carro
+    {% else %}
+        Adicionar Novo Carro
+    {% endif %}
+    {% endblock %}
+
+    {% block content %}
+        <h1 class="mt-3">
+            {% if carro._id %}
+                Editar Carro
+            {% else %}
+                Adicionar Novo Carro
+            {% endif %}
+        </h1>
+        <form action="{{ url_for('form_carro', id=carro._id) }}" method="post">
+            <div class="mb-3">
+                <label for="marca" class="form-label">Marca:</label>
+                <input type="text" class="form-control" id="marca" name="marca" value="{{ carro.marca or '' }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="modelo" class="form-label">Modelo:</label>
+                <input type="text" class="form-control" id="modelo" name="modelo" value="{{ carro.modelo or '' }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="ano" class="form-label">Ano:</label>
+                <input type="number" class="form-control" id="ano" name="ano" value="{{ carro.ano or '' }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="placa" class="form-label">Placa:</label>
+                <input type="text" class="form-control" id="placa" name="placa" value="{{ carro.placa or '' }}" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </form>
+        <a href="{{ url_for('index') }}" class="btn btn-secondary mt-3">Voltar</a>
+    {% endblock %}
+
+</body>
+</html>
