@@ -23,6 +23,13 @@ Rua Tereza Lera Paoletti, 590 • Jardim Bela Vista • 13974-080 • Itapira �
 
 Este é um sistema simples para gerenciar uma frota de carros utilizando Flask como framework web e CouchDB como banco de dados NoSQL.
 
+### Estrutura do Projeto  
+
+- Configuração do Ambiente
+- Back-end com Python (Flask)
+- Operações CRUD para Carros
+- Interface de Usuário Simples com Flask
+
 ## Pré-requisitos
 
 Antes de começar, certifique-se de ter os seguintes requisitos instalados:
